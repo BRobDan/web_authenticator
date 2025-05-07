@@ -1,3 +1,4 @@
 # this will end up having all requirements for app in it
 
-Flask~=3.1.0
+Flask~=3.1.0 # for creating the flask web service
+PyJWT~=2.10.1 # for generating jwt tokens
