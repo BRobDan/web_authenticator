@@ -1,9 +1,6 @@
 # tests for tokens
 
-import pytest
-from flask import Flask
 import jwt
-from auth import auth_blueprint
 from auth import generate_jwt_token
 
 # Tests the generation of jwt tokens
