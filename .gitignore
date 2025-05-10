@@ -10,5 +10,8 @@ __pycache__/
 # Ignore testing __pycache__ folder
 tests/__pycache__/
 
+# Ignore auth __pycache__ folder
+auth/__pycache__/
+
 # Ignore all compiled python files
 *.py[cod]

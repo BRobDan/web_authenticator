@@ -12,11 +12,12 @@ def app():
     app.config['TESTING'] = True
     return app
 
+# Set up a test client for sending requests
 @pytest.fixture
 def client(app):
     return app.test_client()
 
-
+# Tests a proper login request with valid credentials
 def test_login_success(client):
     response = client.post('/auth/login', json={
         'username': 'admin',
@@ -26,7 +27,7 @@ def test_login_success(client):
     assert response.status_code == 200
     assert 'token' in data
 
-
+# Tests missing fields in a request.
 def test_login_missing_fields(client):
     response = client.post('/auth/login', json={
         'username': 'admin'
@@ -35,7 +36,7 @@ def test_login_missing_fields(client):
     assert response.status_code == 400
     assert response.get_json()['message'] == 'Username and password are required'
 
-
+# Tests incorrect credentials
 def test_login_invalid_credentials(client):
     response = client.post('/auth/login', json={
         'username': 'wrong',
