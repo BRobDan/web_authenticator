@@ -15,3 +15,6 @@ auth/__pycache__/
 
 # Ignore all compiled python files
 *.py[cod]
+
+# Ignore the database file
+database.db
