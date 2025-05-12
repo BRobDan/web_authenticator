@@ -4,3 +4,4 @@ Flask~=3.1.0 # for creating the flask web service
 PyJWT~=2.10.1 # for generating jwt tokens
 pytest~=8.3.5 # for unit tests
 pytest-flask~=1.3.0 # for flasks tests
+argon2-cffi~=23.1.0 # for password hashing

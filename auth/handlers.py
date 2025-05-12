@@ -2,6 +2,8 @@
 
 from flask import Blueprint, request, jsonify
 from .tokens import generate_jwt_token
+from db import get_user_info, register_user
+from .hashing import hash_password, verify_password
 
 """
 The below code contains the blueprint route for authentication
@@ -25,8 +27,21 @@ def login():
     username = data.get('username')
     password = data.get('password')
 
+    # retrieve database information for user
+    user_info = get_user_info(username)
+
+    # check to see if no user was found
+    if not user_info:
+        return jsonify({'message': 'Invalid credentials'}), 401
+
+    # unpack user info
+    stored_username, stored_hash = user_info
+
+    # debug statement
+    print('stored:', stored_hash)
+
     # test validation, need to replace later
-    if username == "admin" and password == "password":
+    if verify_password(stored_hash, password):
         token = generate_jwt_token(username)
         return jsonify({'token': token}), 200
 

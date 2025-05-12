@@ -27,10 +27,10 @@ def with_db_conn(func):
 
 @with_db_conn
 def get_user_info(cursor, username):
-    cursor.execute("SELECT username, password FROM users WHERE username = ?", (username,))
+    cursor.execute("SELECT username, password FROM users WHERE username = ?", (username.lower().strip(),))
     return cursor.fetchone()
 
 @with_db_conn
 def register_user(cursor, username, password):
-    cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+    cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username.lower().strip(), password))
 
